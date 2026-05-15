@@ -1,0 +1,264 @@
+/* =========================
+   SIGIL Δ
+========================= */
+
+.sigil {
+    display: block;
+
+    background-image: url("../images/sigil.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/* =========================
+   FONT
+========================= */
+
+@font-face {
+    font-family: "Balthazar";
+    src: url("../fonts/Balthazar-Regular.woff2") format("woff2"),
+         url("../fonts/Balthazar-Regular.woff") format("woff");
+}
+
+
+/* =========================
+   AVATAR
+========================= */
+
+.avatar {
+    position: fixed;
+}
+
+.avatar-icon {
+    aspect-ratio: 1 / 1;
+
+    background-image: url("../images/avatar.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 50%;
+    cursor: pointer;
+
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8))
+            drop-shadow(0 0 12px rgba(0, 0, 0, 0.4));
+}
+
+.avatar-icon:hover {
+    filter: drop-shadow(0 0 6px rgba(241, 178, 106, 0.8))
+            drop-shadow(0 0 12px rgba(241, 178, 106, 0.4));
+}
+
+.avatar-icon {
+    transition: filter 0.15s ease;
+}
+
+/* =========================
+   AVATAR DROPDOWN
+========================= */
+
+.avatar-dropdown {
+    position: absolute;
+    top: 70px;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+
+    padding: 30px;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    border: 1px solid rgba(193,154,107,0.3);
+
+    z-index: 1000;
+
+    pointer-events: none;
+
+    /* Pre-dropdown */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.avatar.open .avatar-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+
+    transform: translateY(0);
+}
+
+/* INNER BORDER */
+.avatar-dropdown::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+
+    border: 1px solid #c19a6b66;
+
+    pointer-events: none;
+}
+
+/* LINKS */
+.avatar-dropdown a {
+    display: block;
+}
+
+/* BUTTONS */
+.avatar-dropdown img {
+    height: 25px;
+    width: auto;
+
+    display: block;
+}
+
+.avatar-dropdown a.pressed {
+    transform: scale(0.90);
+}
+
+
+/* =========================
+   BASE
+========================= */
+
+body {
+    margin: 0;
+    font-family: "Balthazar", serif;
+    background-color: black;
+}
+
+button {
+    outline: none;
+    border: none;
+    background: none;
+}
+
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+button,
+.button-s,
+.button-l {
+    font-family: "Balthazar", serif;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+/* Global button layout */
+.button-s,
+.button-l {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    text-decoration: none;
+
+    transition: transform 0.1s ease;
+}
+
+/* SMALL BUTTON */
+.button-s {
+    width: 150px;
+    height: 49px;
+
+    background-image: url("../images/button_s.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    font-size: 22px;
+}
+
+.button-s:hover {
+    background-image: url("../images/button_s_hover.png");
+}
+
+/* LARGE BUTTON */
+.button-l {
+    width: 212px;
+    height: 49px;
+
+    background-image: url("../images/button_l.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    font-size: 20px;
+}
+
+.button-l:hover {
+    background-image: url("../images/button_l_hover.png");
+}
+
+
+/* =========================
+   CLICKED STATE
+========================= */
+
+.button-s.pressed,
+.button-l.pressed {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   CONTACT LINK
+========================= */
+.contact-link {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 20px;
+    color: #cc7a33;
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+.contact-link:hover {
+    color: #aaa;
+    text-decoration: underline;
+}
+
+.contact-link.pressed {
+    transform: translateX(-50%) scale(0.95);
+}
+
+
+/* ==================================================
+   MOBILE OVERRIDES
+================================================== */
+
+@media (max-width: 1600px) and (pointer: coarse) {
+
+    .sigil {
+        background-image: url("../images/sigilm.png");
+    }
+
+    .avatar-dropdown {
+        top: 40px;
+        gap: 20px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .avatar-dropdown img {
+        height: 20px;
+    }
+
+    .contact-link {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 18px;
+    }
+}

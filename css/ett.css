@@ -1,0 +1,525 @@
+/* =========================
+   BASE LAYOUT
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100dvh;
+    overflow-x: hidden;
+}
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    color: #f4e9d8;
+}
+
+
+/* =========================
+   AVATAR
+========================= */
+
+.avatar {
+    position: fixed;
+    top: 50px;
+    right: 100px;
+    z-index: 1000;
+}
+
+.avatar-icon {
+    width: 60px;
+}
+
+
+/* =========================
+   MAIN PANEL (RIDDLE BOX)
+========================= */
+
+.riddle-box {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    padding-top: 20px;
+    width: min(700px, 90vw);
+    margin-top: 160px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+
+    box-shadow:
+        0 0 0 1px rgba(193,154,107,0.6),
+        0 0 10px 5px rgba(193,154,107,0.25),
+        0 0 25px 20px rgba(193,154,107,0.12);
+}
+
+.riddle-box.left {
+    margin-left: clamp(20px, calc((100vw - 700px) / 2), 250px);
+    margin-right: 20px;
+}
+
+.riddle-box.right {
+    margin-left: auto;
+    margin-right: clamp(20px, calc((100vw - 700px) / 2), 250px);
+}
+
+.riddle-box::before {
+    content: "";
+    position: absolute;
+
+    inset: -3px;
+
+    border: 1px solid #c19a6b66;
+    
+    pointer-events: none;
+}
+
+.riddle-box::after {
+    content: "";
+    position: absolute;
+
+    inset: 5px;
+
+    background:
+
+        /* ===== OUTER (long) ===== */
+
+        /* TOP LEFT */
+        linear-gradient(to right, #c19a6b, transparent) top left / 45px 1px no-repeat,
+        linear-gradient(#c19a6b, transparent) top left / 1px 45px no-repeat,
+
+        /* TOP RIGHT */
+        linear-gradient(to left, #c19a6b, transparent) top right / 45px 1px no-repeat,
+        linear-gradient(#c19a6b, transparent) top right / 1px 45px no-repeat,
+
+        /* BOTTOM LEFT */
+        linear-gradient(to right, #c19a6b, transparent) bottom left / 45px 1px no-repeat,
+        linear-gradient(to top, #c19a6b, transparent) bottom left / 1px 45px no-repeat,
+
+        /* BOTTOM RIGHT */
+        linear-gradient(to left, #c19a6b, transparent) bottom right / 45px 1px no-repeat,
+        linear-gradient(to top, #c19a6b, transparent) bottom right / 1px 45px no-repeat,
+
+
+        /* ===== INNER (short, offset by 1px) ===== */
+
+        /* TOP LEFT */
+        linear-gradient(to right, #c19a6b, transparent) top 1px left / 30px 1px no-repeat,
+        linear-gradient(#c19a6b, transparent) top left 1px / 1px 30px no-repeat,
+
+        /* TOP RIGHT */
+        linear-gradient(to left, #c19a6b, transparent) top 1px right / 30px 1px no-repeat,
+        linear-gradient(#c19a6b, transparent) top right 1px / 1px 30px no-repeat,
+
+        /* BOTTOM LEFT */
+        linear-gradient(to right, #c19a6b, transparent) bottom 1px left / 30px 1px no-repeat,
+        linear-gradient(to top, #c19a6b, transparent) bottom left 1px / 1px 30px no-repeat,
+
+        /* BOTTOM RIGHT */
+        linear-gradient(to left, #c19a6b, transparent) bottom 1px right / 30px 1px no-repeat,
+        linear-gradient(to top, #c19a6b, transparent) bottom right 1px / 1px 30px no-repeat;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   SIGIL
+========================= */
+
+.sigil {
+    position: absolute;
+    top: -140px;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 300px;
+    aspect-ratio: 16 / 9;
+
+    background-image: url("../images/sigil.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    filter: drop-shadow(0 0 60px rgba(241, 178, 106, 0.5))
+            drop-shadow(0 0 100px rgba(241, 178, 106, 0.3));
+
+    z-index: 2;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   DESKTOP RIDDLE DISPLAY
+========================= */
+
+.mobile-break {
+    display: inline;
+}
+
+
+/* =========================
+   CHAT BOX
+========================= */
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(0, 0, 0, 0.9);
+
+    height: 35vh;
+    max-height: 500px;
+
+    padding: 15px;
+    margin: 20px 0;
+}
+
+
+/* =========================
+   CHAT LOG (SCROLL AREA)
+========================= */
+
+#chat-log {
+    flex: 1;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px 30px;
+}
+
+
+/* =========================
+   INPUT ROW (NEW)
+========================= */
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 30px;
+}
+
+#player-question {
+    flex: 1;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 16px;
+
+    letter-spacing: 0.08em;
+
+    border: none;
+    outline: none;
+    border-radius: 0;
+
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.7),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.7);
+}
+
+
+/* =========================
+   CHAT MESSAGES
+========================= */
+
+.message {
+    max-width: 90%;
+    word-wrap: break-word;
+    font-size: 19px;
+    text-align: left;
+    letter-spacing: 0.02em;
+}
+
+/* NPC (left side) */
+.message.npc {
+    align-self: flex-start;
+}
+
+/* Player (right side) */
+.message.player {
+    align-self: flex-end;
+}
+
+/* Default spacing between all messages */
+.message {
+    margin: 0px 0;
+}
+
+/* Player message AFTER NPC → small gap (tight Q&A pair) */
+.message.npc + .message.player {
+    margin-top: 20px;
+}
+
+/* NPC message AFTER player → larger gap (new pair) */
+.message.player + .message.npc {
+    margin-top: 5px;
+}
+
+/* Send / Ask question button) */
+.ask-button {
+    border: none;
+    background: none;
+    padding: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.ask-button img {
+    height: 30px;
+    width: auto;
+    display: block;
+}
+
+
+/* =========================
+   SUBMIT
+========================= */
+
+.submit-row {
+    position: relative;
+    display: flex;
+    align-items: center;        /* vertical alignment */
+    justify-content: center;    /* horizontal alignment */
+    gap: 0px;                   /* space between submit and button */
+}
+
+.submit-button {
+    position: absolute;
+    left: 50%;
+    margin-left: 120px;
+}
+
+.submit-button img {
+    height: 60px;
+    width: auto;
+    display: block;
+    cursor: pointer;
+}
+
+
+/* =========================
+   BUTTON EFFECTS
+========================= */
+/* Button press effect */
+.pressed img {
+    transform: scale(0.92);
+}
+
+/* Glow on hover */
+.ask-button img:hover,
+.submit-button img:hover {
+    filter: drop-shadow(0 0 6px rgba(241, 178, 106, 0.8))
+            drop-shadow(0 0 12px rgba(241, 178, 106, 0.4));
+}
+
+.ask-button img,
+.submit-button img {
+    transition: filter 0.15s ease, transform 0.08s ease;
+}
+
+
+/* =========================
+   SAGE OVERLAY
+========================= */
+
+.solved-overlay {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    flex-direction: row-reverse;
+    width: 100%;
+
+    position: fixed;
+    inset: 0;
+    background: black;
+
+    z-index: 999;
+
+    opacity: 0;
+    pointer-events: none;
+    column-gap: 50px;
+    container-type: inline-size;
+
+    transition: opacity 3s ease-in-out;
+}
+
+.solved-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* LEFT SIDE (Sage) */
+.solved-left {
+    flex: 0 0 auto;
+    height: 100%;
+    overflow: hidden;
+}
+
+.guide-image {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+/* RIGHT SIDE (text + button) */
+.solved-right {
+    flex: 0 0 auto;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+
+    width: fit-content;
+    max-width: 700px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 30px;
+    line-height: 1.4;
+    text-align: left;
+    gap: 20px;
+
+    color: #f1b26a;
+}
+
+.solved-right .submit-button {
+    position: static;
+    margin: 0 auto;
+}
+
+
+/* ==================================================
+   MOBILE OVERRIDES
+================================================== */
+
+@media (max-width: 768px) and (pointer: coarse) {
+
+    html, body {
+        overflow-y: auto;
+    }
+
+    /* =========================
+    AVATAR
+    ========================= */
+
+    .avatar {
+        position: fixed;
+        top: 20px;
+        z-index: 1000;
+    }
+
+    .avatar.right {
+        right: 15px;
+    }
+
+    .avatar.left {
+        left: 15px;
+    }
+
+    .avatar-icon {
+        width: 40px;
+    }
+
+    .avatar.left .avatar-dropdown {
+        left: 0;
+        right: auto;
+    }
+
+    .avatar.right .avatar-dropdown {
+        right: 0;
+        left: auto;
+    }
+
+    /* =========================
+       SIGIL
+    ========================= */
+    .sigil {
+        background-image: url("../images/sigilm.png");
+        position: absolute;
+        top: -100px;
+
+        width: 40vw;
+
+        filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.9))
+                drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6))
+                drop-shadow(0 25px 40px rgba(0, 0, 0, 0.4))
+                drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
+    }
+
+    /* =========================
+       RIDDLE TEXT
+    ========================= */
+
+    .riddle-box {
+        margin-top: 120px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .mobile-break {
+        display: block;
+    }
+    .riddle-box p br {
+        display: none;
+    }
+    
+    /* =========================
+       CHAT CONTAINER
+    ========================= */
+
+    .chat-container {
+        height: 30vh;
+        max-height: 500px;
+        padding: 0px;
+        margin: 10px 0;
+    }
+
+    #chat-log {
+        padding: 15px 15px;
+    }
+
+    /* =========================
+       CHAT MESSAGES
+    ========================= */
+
+    .message {
+        font-size: 18px;
+        letter-spacing: 0.02em;
+    }
+
+    #player-question {
+        font-size: 16px;
+        letter-spacing: 0.04em;
+    }
+
+    /* Player message AFTER NPC → small gap (tight Q&A pair) */
+    .message.npc + .message.player {
+        margin-top: 12px;
+    }
+
+    /* NPC message AFTER player → larger gap (new pair) */
+    .message.player + .message.npc {
+        margin-top: 5px;
+    }
+
+    /* =========================
+        SAGE OVERLAY
+    ========================= */
+
+    .mobile-hide {
+        display: none;
+    }
+}
