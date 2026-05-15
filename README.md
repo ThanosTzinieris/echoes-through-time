@@ -124,7 +124,11 @@ The project also marked my first significant experience deploying and maintainin
 ---
 
 <p align="center">
-  <img src="images/sigilm.png" alt="Sigilm" width="20%">
+  <a href="https://echoestime.com">
+    <img src="images/sigilm.png" alt="Sigilm" width="20%">
+  </a>
+</p>
+
 </p>
 
 # Repository Notes
