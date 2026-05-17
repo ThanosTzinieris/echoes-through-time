@@ -125,7 +125,7 @@ The project also marked my first significant experience deploying and maintainin
 
 <p align="center">
   <a href="https://echoestime.com">
-    <img src="images/sigilm.png" alt="Sigilm" width="20%">
+    <img src="images/sigilm.png" alt="Sigilm" width="30%">
   </a>
 </p>
 
